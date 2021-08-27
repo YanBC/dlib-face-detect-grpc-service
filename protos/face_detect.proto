@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package nn_grpc;
+
+import "protos/common.proto";
+
+message FaceDetectInput {
+    common.Image image = 1;
+}
+
+message FaceDetectOuput {
+    int32 num = 1;
+    repeated common.Bbox bboxes = 2;
+}
+
+service FaceDetect {
+    rpc GetBboxes(FaceDetectInput) returns (FaceDetectOuput) {}
+}
